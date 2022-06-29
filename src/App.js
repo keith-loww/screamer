@@ -8,7 +8,7 @@ import PostDisplay from "./comp/PostDisplay"
 
 
 function App() {
-    const [posts, setPosts] = useState()
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         const initialFetch = async () => {
@@ -26,7 +26,7 @@ function App() {
                 <span className="relative left-10">SCREAMER</span>
             </div>
             <PostForm />
-            <PostDisplay />
+            <PostDisplay posts={posts}/>
             <Footer />
         </div>
     )
