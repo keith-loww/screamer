@@ -23,6 +23,7 @@
     "lint": "eslint .",
     "lintfix": "eslint . --fix"
   },
+  "proxy": "https://screamer-be.herokuapp.com",
   "eslintConfig": {
     "extends": [
       "react-app",

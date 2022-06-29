@@ -1,5 +1,5 @@
 import axios from "axios"
-const baseUrl = "https://screamer-be.herokuapp.com/api/posts"
+const baseUrl = "/api/posts"
 
 const getAll = async () => {
     const resp = await axios.get(baseUrl)
