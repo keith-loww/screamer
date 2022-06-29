@@ -4,7 +4,7 @@ module.exports = {
         "es6": true,
         "jest/globals": true
     },
-    "extends": [ 
+    "extends": [
         "eslint:recommended",
         "plugin:react/recommended"
     ],
@@ -16,12 +16,12 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react", "jest", "cypress"
+        "react", "jest"
     ],
     "rules": {
         "indent": [
             "error",
-            4  
+            4
         ],
         "linebreak-style": [
             "error",
@@ -48,8 +48,8 @@ module.exports = {
         "react/react-in-jsx-scope": "off"
     },
     "settings": {
-      "react": {
-        "version": "detect"
-      }
+        "react": {
+            "version": "detect"
+        }
     }
 }
