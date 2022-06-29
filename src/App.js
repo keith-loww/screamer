@@ -16,12 +16,10 @@ function App() {
             return { ...post, date: new Date(post.date) }
         })
         setPosts(initialPosts.sort((objA, objB) => Number(objB.date) - Number(objA.date)))
-        console.log(initialPosts)
     }
 
     useEffect(() => {
         fetchAllAndSetBlogs()
-        console.log("CONNECTED", posts)
     }, [])
 
     const createNewPost = async (postObj) => {
