@@ -21,9 +21,9 @@ function App() {
 
     return (
         <div>
-            <div className="navbar bg-neutral text-2xl p-4 flex justify-start items-center shadow-md space-x-2">
-                <GoMegaphone size="28" className="hover:animate-pulse"/>
-                <span>SCREAMER</span>
+            <div className="navbar bg-neutral text-4xl p-4 flex justify-start items-center shadow-md space-x-2">
+                <GoMegaphone size="32" className="hover:animate-pulse relative left-10"/>
+                <span className="relative left-10">SCREAMER</span>
             </div>
             <PostForm />
             <PostDisplay />
