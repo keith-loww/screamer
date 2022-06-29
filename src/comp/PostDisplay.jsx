@@ -3,7 +3,7 @@ import PostItem from "./PostItem"
 
 const PostDisplay = ({ posts }) => {
     return (
-        <div className="p-2 m-2">
+        <div className="p-2 m-2 space-y-2 text-xl">
             {posts.map(post => <PostItem key={post.id} post={post}/>)}
         </div>
     )
