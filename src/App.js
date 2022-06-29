@@ -1,6 +1,7 @@
 import "./App.css"
 import PostForm from "./comp/PostForm"
 import { GoMegaphone } from "react-icons/go"
+import Footer from "./comp/Footer"
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
                 <span>SCREAMER</span>
             </div>
             <PostForm />
-            <footer className="footer items-center p-4 bg-neutral text-neutral-content">@Copyright?</footer>
+            <Footer />
         </div>
     )
 }
