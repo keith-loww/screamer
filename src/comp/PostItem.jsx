@@ -10,7 +10,7 @@ const PostItem = ({ post }) => {
             </div>
             <div className="collapse-content bg-none text-none-content peer-checked:bg-primary peer-checked:text-primary-content flex flex-wrap">
                 <span className="basis-full">by: {author}</span>
-                <span className="basis-full">{date}</span>
+                <span className="basis-full">{date.toString()}</span>
             </div>
         </div>
     )

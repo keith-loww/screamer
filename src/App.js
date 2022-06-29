@@ -10,14 +10,24 @@ import PostDisplay from "./comp/PostDisplay"
 function App() {
     const [posts, setPosts] = useState([])
 
+    const fetchAllAndSetBlogs = async () => {
+        let initialPosts = await postService.getAll()
+        initialPosts = initialPosts.map(post => {
+            return { ...post, date: new Date(post.date) }
+        })
+        setPosts(initialPosts.sort((objA, objB) => Number(objB.date) - Number(objA.date)))
+        console.log(initialPosts)
+    }
+
     useEffect(() => {
-        const initialFetch = async () => {
-            const initialPosts = await postService.getAll()
-            setPosts(initialPosts)
-        }
-        initialFetch()
+        fetchAllAndSetBlogs()
         console.log("CONNECTED", posts)
     }, [])
+
+    const createNewPost = async (postObj) => {
+        await postService.createPost(postObj)
+        await fetchAllAndSetBlogs()
+    }
 
     return (
         <div>
@@ -25,7 +35,7 @@ function App() {
                 <GoMegaphone size="32" className="hover:animate-pulse relative left-10"/>
                 <span className="relative left-10">SCREAMER</span>
             </div>
-            <PostForm />
+            <PostForm createNewPost={createNewPost} />
             <PostDisplay posts={posts}/>
             <Footer />
         </div>
