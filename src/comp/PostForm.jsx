@@ -1,15 +1,19 @@
 import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { createNewPost } from "../reducers/postReducer"
 
-const PostForm = ({ createNewPost }) => {
+const PostForm = () => {
     const [author, setAuthor] = useState("")
     const [content, setContent] = useState("")
 
+    const dispatch = useDispatch()
+
     const submitHandler = async (event) => {
         event.preventDefault()
-        await createNewPost({
+        await dispatch(createNewPost({
             author: author.toUpperCase(),
             content: content.toUpperCase()
-        })
+        }))
         setAuthor("")
         setContent("")
     }

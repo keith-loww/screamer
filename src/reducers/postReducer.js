@@ -16,14 +16,14 @@ const postSlice = createSlice({
 
 export const initializePosts = () => {
     return async dispatch => {
-        const posts = postService.getAll()
+        const posts = await postService.getAll()
         dispatch(setPosts(posts))
     }
 }
 
 export const createNewPost = (obj) => {
     return async dispatch => {
-        const added = postService.createPost(obj)
+        const added = await postService.createPost(obj)
         dispatch(appendPost(added))
     }
 }

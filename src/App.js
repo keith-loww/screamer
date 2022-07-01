@@ -2,30 +2,19 @@ import "./App.css"
 import PostForm from "./comp/PostForm"
 import { GoMegaphone } from "react-icons/go"
 import Footer from "./comp/Footer"
-import { useEffect, useState } from "react"
-import postService from "./services/post"
+import { useEffect } from "react"
 import PostDisplay from "./comp/PostDisplay"
+import { useDispatch } from "react-redux"
+import { initializePosts } from "./reducers/postReducer"
 
 
 function App() {
-    const [posts, setPosts] = useState([])
-
-    const fetchAllAndSetBlogs = async () => {
-        let initialPosts = await postService.getAll()
-        initialPosts = initialPosts.map(post => {
-            return { ...post, date: new Date(post.date) }
-        })
-        setPosts(initialPosts.sort((objA, objB) => Number(objB.date) - Number(objA.date)))
-    }
+    // const [posts, setPosts] = useState([])
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        fetchAllAndSetBlogs()
-    }, [])
-
-    const createNewPost = async (postObj) => {
-        await postService.createPost(postObj)
-        await fetchAllAndSetBlogs()
-    }
+        dispatch(initializePosts())
+    }, [dispatch])
 
     return (
         <div>
@@ -33,8 +22,8 @@ function App() {
                 <GoMegaphone size="32" className="hover:animate-pulse relative left-10"/>
                 <span className="relative left-10">SCREAMER</span>
             </div>
-            <PostForm createNewPost={createNewPost} />
-            <PostDisplay posts={posts}/>
+            <PostForm />
+            <PostDisplay/>
             <Footer />
         </div>
     )
