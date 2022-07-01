@@ -5,7 +5,7 @@ import postReducer from "./reducers/postReducer"
 const store = configureStore({
     reducer: {
         posts: postReducer,
-        notfication: notificationReducer
+        notification: notificationReducer
     }
 })
 

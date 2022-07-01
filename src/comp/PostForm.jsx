@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
+import { errorNotif, updateNotif } from "../reducers/notificationReducer"
 import { createNewPost } from "../reducers/postReducer"
 
 const PostForm = () => {
@@ -10,10 +11,21 @@ const PostForm = () => {
 
     const submitHandler = async (event) => {
         event.preventDefault()
+        if (author.length < 3) {
+            await dispatch(errorNotif("AUTHOR MUST BE 3 OR MORE CHARACTERS LONG", 5))
+            return
+        }
+
+        if (content.length < 5) {
+            await dispatch(errorNotif("SCREAM MUST BE 5 OR MORE CHARACTERS LONG", 5))
+            return
+        }
+
         await dispatch(createNewPost({
             author: author.toUpperCase(),
             content: content.toUpperCase()
         }))
+        dispatch(updateNotif("SUCCESSFULLY SCREAMED", 5))
         setAuthor("")
         setContent("")
     }

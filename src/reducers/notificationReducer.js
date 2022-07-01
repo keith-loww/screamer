@@ -26,21 +26,21 @@ const notificationSlice = createSlice({
 
 let timeoutID = null
 
-export const updateNotif = (content, sec) => {
+export const updateNotif = (content, sec = 5) => {
     return async dispatch => {
         clearTimeout(timeoutID)
         dispatch(setNotif(content))
-        setTimeout(() => {
+        timeoutID = setTimeout(() => {
             dispatch(resetNotif())
         }, sec * 1000)
     }
 }
 
-export const errorNotif = (content, sec) => {
+export const errorNotif = (content, sec = 5) => {
     return async dispatch => {
         clearTimeout(timeoutID)
         dispatch(setError(content))
-        setTimeout(() => {
+        timeoutID = setTimeout(() => {
             dispatch(resetNotif())
         }, sec * 1000)
     }
