@@ -7,6 +7,7 @@ const getAll = async () => {
 }
 
 const createPost = async newObject => {
+    console.log(newObject)
     const response = await axios.post(baseUrl, newObject)
     return response.data
 }
