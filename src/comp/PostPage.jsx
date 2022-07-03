@@ -35,7 +35,7 @@ const PostPage = ({ post }) => {
     }
 
     return (
-        <div className='card m-2 shadow-lg'>
+        <div className='card m-2 shadow-lg border border-base-300'>
             <div className="card-body">
                 <h1 className="card-title">{content}</h1>
                 <p>by: {author}</p>

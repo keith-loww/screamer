@@ -9,7 +9,6 @@ import PostPage from "./comp/PostPage"
 import { Routes, Route, useMatch } from "react-router-dom"
 import NavBar from "./comp/NavBar"
 
-
 function App() {
     // const [posts, setPosts] = useState([])
     const dispatch = useDispatch()
