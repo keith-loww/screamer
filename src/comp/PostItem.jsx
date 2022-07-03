@@ -24,11 +24,11 @@ const PostItem = ({ post }) => {
                 <p className="text-sm">{author}</p>
                 <div className="flex space-x-6">
                     <div className="flex gap-2">
-                        <button onClick={addLike}><AiFillLike /></button>
+                        <button onClick={addLike} className="tooltip tooltip-right z-40" data-tip="Like this post"><AiFillLike /></button>
                         {post.likes ? post.likes : 0}
                     </div>
                     <div className="flex gap-2">
-                        <Link to={`/posts/${post.id}`}>
+                        <Link to={`/posts/${post.id}`} className="tooltip tooltip-right z-30" data-tip="View replies">
                             <BiCommentError className="relative top-1" />
                         </Link>
                         {post.comments.length}
