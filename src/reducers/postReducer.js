@@ -10,6 +10,9 @@ const postSlice = createSlice({
         },
         appendPost(state, action) {
             state.push(action.payload)
+        },
+        updatePostState(state, action) {
+            return state.map(post => post.id === action.payload.id ? action.payload : post)
         }
     }
 })
@@ -27,6 +30,12 @@ export const createNewPost = (postObj) => {
         dispatch(appendPost(added))
     }
 }
+export const updatePost = (postObj) => {
+    return async dispatch => {
+        const updated = await postService.updatePost(postObj)
+        dispatch(updatePostState(updated))
+    }
+}
 
-export const { setPosts, appendPost } = postSlice.actions
+export const { setPosts, appendPost, updatePostState } = postSlice.actions
 export default postSlice.reducer
