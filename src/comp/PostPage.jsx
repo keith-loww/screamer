@@ -44,7 +44,7 @@ const PostPage = ({ post }) => {
                     <button className="btn btn-ghost" onClick={addLike}>
                         <AiFillLike size={"20"} />
                     </button>
-                    <span>{likes || 0}</span>
+                    <span>{likes ? likes : 0}</span>
                     <button className="btn btn-ghost" onClick={removeLike}>
                         <AiFillDislike size={"20"} />
                     </button>
