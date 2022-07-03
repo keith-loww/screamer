@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { AiFillLike } from "react-icons/ai"
 import { BiCommentError } from "react-icons/bi"
 import { updatePost } from "../reducers/postReducer"
@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux"
 const PostItem = ({ post }) => {
     const { author, content } = post
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const addLike = () => {
         const updated = { ...post, likes: post.likes + 1 }
@@ -15,7 +16,7 @@ const PostItem = ({ post }) => {
     }
 
     return (
-        <div className="card shadow-md hover:shadow-lg">
+        <div className="card shadow-md hover:shadow-lg" onDoubleClick={() => navigate(`/posts/${post.id}`)}>
             <div className="card-body">
                 <Link to={`/posts/${post.id}`}>
                     <h2 className="card-title">{content}</h2>
