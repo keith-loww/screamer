@@ -40,12 +40,12 @@ const PostPage = ({ post }) => {
                 <h1 className="card-title">{content}</h1>
                 <p>by: {author}</p>
                 <p>{(new Date(date)).toLocaleString()}</p>
-                <div>
-                    <button className="btn btn-ghost" onClick={addLike}>
+                <div className="space-x-2">
+                    <button className="btn btn-ghost relative top-1 btn-square" onClick={addLike}>
                         <AiFillLike size={"20"} />
                     </button>
                     <span>{likes ? likes : 0}</span>
-                    <button className="btn btn-ghost" onClick={removeLike}>
+                    <button className="btn btn-ghost btn-square relative top-1" onClick={removeLike}>
                         <AiFillDislike size={"20"} />
                     </button>
                 </div>
