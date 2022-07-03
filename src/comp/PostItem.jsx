@@ -16,7 +16,7 @@ const PostItem = ({ post }) => {
     }
 
     return (
-        <div className="card shadow-md hover:shadow-lg" onDoubleClick={() => navigate(`/posts/${post.id}`)}>
+        <div className="card border border-base-200 shadow-md hover:shadow-lg" onDoubleClick={() => navigate(`/posts/${post.id}`)}>
             <div className="card-body">
                 <Link to={`/posts/${post.id}`}>
                     <h2 className="card-title">{content}</h2>
