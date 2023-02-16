@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/screamer/static/css/main.a3c8f570.css",
+    "main.js": "/screamer/static/js/main.493eef07.js",
+    "index.html": "/screamer/index.html",
+    "main.a3c8f570.css.map": "/screamer/static/css/main.a3c8f570.css.map",
+    "main.493eef07.js.map": "/screamer/static/js/main.493eef07.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3c8f570.css",
+    "static/js/main.493eef07.js"
+  ]
+}
