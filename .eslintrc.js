@@ -18,14 +18,11 @@ module.exports = {
     "plugins": [
         "react", "jest"
     ],
+    "ignorePatterns": ["node_modules/*", "build/*", ".eslintrc.js",  "postcss.config.js", "tailwind.config.js"],
     "rules": {
         "indent": [
             "error",
             4
-        ],
-        "linebreak-style": [
-            "warn",
-            "windows"
         ],
         "quotes": [
             "error",
