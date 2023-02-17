@@ -1,5 +1,5 @@
 import axios from "axios"
-const baseUrl = "https://web-production-5b555.up.railway.app/api/posts"
+const baseUrl = "https://screamer-be.onrender.com//api/posts"
 
 const getAll = async () => {
     const resp = await axios.get(baseUrl)
