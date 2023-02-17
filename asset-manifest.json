@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/screamer/static/css/main.a3c8f570.css",
-    "main.js": "/screamer/static/js/main.09082fce.js",
+    "main.js": "/screamer/static/js/main.0d3225a4.js",
     "index.html": "/screamer/index.html",
     "main.a3c8f570.css.map": "/screamer/static/css/main.a3c8f570.css.map",
-    "main.09082fce.js.map": "/screamer/static/js/main.09082fce.js.map"
+    "main.0d3225a4.js.map": "/screamer/static/js/main.0d3225a4.js.map"
   },
   "entrypoints": [
     "static/css/main.a3c8f570.css",
-    "static/js/main.09082fce.js"
+    "static/js/main.0d3225a4.js"
   ]
 }
