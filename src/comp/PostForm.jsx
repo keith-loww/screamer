@@ -1,13 +1,27 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { errorNotif, updateNotif } from "../reducers/notificationReducer"
-import { createNewPost } from "../reducers/postReducer"
+// import { createNewPost } from "../reducers/postReducer"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import postService from "../services/post.js"
 
 const PostForm = () => {
+    const queryClient = useQueryClient()
+
     const [author, setAuthor] = useState("")
     const [content, setContent] = useState("")
 
     const dispatch = useDispatch()
+
+    const createPostMutation = useMutation({
+        mutationFn: postService.createPost,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["posts"] })
+        },
+        onError: (error) => {
+            dispatch(errorNotif(error.response.data.error, 5))
+        }
+    })
 
     const submitHandler = async (event) => {
         event.preventDefault()
@@ -21,10 +35,16 @@ const PostForm = () => {
             return
         }
 
-        await dispatch(createNewPost({
+        // await dispatch(createNewPost({
+        //     author: author.toUpperCase(),
+        //     content: content.toUpperCase()
+        // }))
+
+        createPostMutation.mutate({
             author: author.toUpperCase(),
-            content: content.toUpperCase()
-        }))
+            content: content.toUpperCase(),
+        })
+
         dispatch(updateNotif("SUCCESSFULLY SCREAMED", 5))
         setAuthor("")
         setContent("")
