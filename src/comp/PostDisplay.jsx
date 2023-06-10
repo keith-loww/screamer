@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PostItem from "./PostItem"
 import { useState } from "react"
-import { useSelector } from "react-redux/es/exports"
+// import { useSelector } from "react-redux/es/exports"
+import { useQuery } from "@tanstack/react-query"
+import postService from "../services/post.js"
 
 const PostDisplay = () => {
     const [sort, setSort] = useState("default")
@@ -15,7 +17,26 @@ const PostDisplay = () => {
 
     const [filter, setFilter] = useState("")
 
-    const posts = useSelector(({ posts }) => posts.filter(post => post.content.includes(filter)).sort(sorter))
+    const { data: posts, isLoading, isError, error } = useQuery({
+        queryKey: ["posts"],
+        queryFn: async () => await postService.getAll(),
+    })
+
+    const [filteredPosts, setFilteredPosts] = useState(posts)
+
+    useEffect(() => {
+        if (posts) {
+            setFilteredPosts(posts.filter((post) => post.content.includes(filter)).sort(sorter))
+        }
+    }, [posts, filter, sorter])
+
+    if (isLoading) {
+        return <span className="loading loading-spinner loading-sm"></span>
+    }
+
+    if (isError) {
+        return <span>Error: {error.message}</span>
+    }
 
     return (
         <div className="p-2 m-2 space-y-2 text-xl">
@@ -32,7 +53,7 @@ const PostDisplay = () => {
                     <input value={filter} onChange={(e) => setFilter(e.target.value.toUpperCase())} type="text" placeholder="Filter..." className="input input-bordered" />
                 </div>
             </div>
-            {posts.map(post => <PostItem key={post.id} post={post}/>)}
+            {filteredPosts && filteredPosts.map(post => <PostItem key={post.id} post={post}/>)}
         </div>
     )
 }
