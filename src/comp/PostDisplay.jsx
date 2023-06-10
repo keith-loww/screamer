@@ -4,7 +4,8 @@ import { useState } from "react"
 // import { useSelector } from "react-redux/es/exports"
 import { useQuery } from "@tanstack/react-query"
 import postService from "../services/post.js"
-import LoadingSpinner from "./LoadingSpinner/LoadingSpinner"
+import LoadingSpinner from "./LoadingSpinner"
+import ErrMessage from "./ErrMessage"
 
 const PostDisplay = () => {
     const [sort, setSort] = useState("default")
@@ -36,25 +37,26 @@ const PostDisplay = () => {
     }
 
     if (isError) {
-        return <span>Error: {error.message}</span>
+        return <ErrMessage message={error.message} />
     }
 
     return (
-        <div className="p-2 m-2 space-y-2 text-xl">
-            <div className="flex flex-row w-full">
-                <div className="flex-1">
-                    <select value={sort} onChange={(e) => setSort(e.target.value)} className="select select-bordered w-full max-w-xs">
-                        <option value="default" disabled selected>Sort by...</option>
-                        <option value="recent">Recent</option>
-                        <option value="mostLiked">Most Liked</option>
-                    </select>
+        <div className="flex py-2 px-4">
+            <div className="p-2 m-2 space-y-2 text-xl">
+                <div className="flex flex-row w-full">
+                    <div className="flex-1">
+                        <select value={sort} onChange={(e) => setSort(e.target.value)} className="select select-bordered w-full max-w-xs">
+                            <option value="default" disabled selected>Sort by...</option>
+                            <option value="recent">Recent</option>
+                            <option value="mostLiked">Most Liked</option>
+                        </select>
+                    </div>
+                    <div className="form-control flex-none">
+                        <input value={filter} onChange={(e) => setFilter(e.target.value.toUpperCase())} type="text" placeholder="Filter..." className="input input-bordered" />
+                    </div>
                 </div>
-
-                <div className="form-control flex-none">
-                    <input value={filter} onChange={(e) => setFilter(e.target.value.toUpperCase())} type="text" placeholder="Filter..." className="input input-bordered" />
-                </div>
+                {filteredPosts && filteredPosts.map(post => <PostItem key={post.id} post={post}/>)}
             </div>
-            {filteredPosts && filteredPosts.map(post => <PostItem key={post.id} post={post}/>)}
         </div>
     )
 }
