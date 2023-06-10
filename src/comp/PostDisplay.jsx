@@ -4,6 +4,7 @@ import { useState } from "react"
 // import { useSelector } from "react-redux/es/exports"
 import { useQuery } from "@tanstack/react-query"
 import postService from "../services/post.js"
+import LoadingSpinner from "./LoadingSpinner/LoadingSpinner"
 
 const PostDisplay = () => {
     const [sort, setSort] = useState("default")
@@ -31,7 +32,7 @@ const PostDisplay = () => {
     }, [posts, filter, sorter])
 
     if (isLoading) {
-        return <span className="loading loading-spinner loading-sm"></span>
+        return <LoadingSpinner />
     }
 
     if (isError) {
